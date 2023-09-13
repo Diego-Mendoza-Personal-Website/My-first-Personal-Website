@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="About.html">
+    <link rel="stylesheet" href="profolio.html">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>   <header> <span class="name">Diego Mendoza</span>
+    <nav class="links">
+    <a class="active" href="Index.html">Home</a>
+    <a class="active" href="profolio.html">profolio</a>
+    <a class="active" href="About.html">About</a>
+    <a class="active" href="Submition.html">Submition</a>
+    </nav>
+    <const form = document.querySelector("#form")
+    const submitButton = document.querySelector("#submit")
+    const scriptURL = 'https://script.google.com/macros/s/1XTaVdkdAnzhAHoLOA-x0K4svtJOB9RUnp2OgudFCNoEE4Lo8muDKOgSO/exec'
+ 
+    form.addEventListener('submit', e => {
+      submitButton.disabled = true
+      e.preventDefault()
+      let requestBody = new FormData(form)
+      fetch(scriptURL, { method: 'POST', body: requestBody})
+        .then(response => {
+           alert('Success!', response)
+           submitButton.disabled = false
+          })
+        .catch(error => {
+        alert('Error!', error.message)
+          submitButton.disabled = false
+ 
+        }
+        )
+    })
+    
+</body>
